@@ -1,0 +1,55 @@
+ ImageIcon icon = createImageIcon("/images/middle.gif");
+   
+   GraphicsEnvironment ge =
+           GraphicsEnvironment.getLocalGraphicsEnvironment();
+
+       String[] fonts = ge.getAvailableFontFamilyNames();
+
+       JList list = new JList(fonts);
+       list.addListSelectionListener(new ListSelectionListener() {
+           @Override
+           public void valueChanged(ListSelectionEvent e) {
+               if (!e.getValueIsAdjusting()) {
+                   String name = (String) list.getSelectedValue();
+                   Font font = new Font(name, Font.PLAIN, 12);
+                   label.setFont(font);
+               }
+           }
+       });
+       JScrollPane pane = new JScrollPane();
+       pane.getViewport().add(list);
+       pane.setPreferredSize(new Dimension(250, 200));       
+
+       label = new JLabel("Aguirre, der Zorn Gottes");
+       label.setFont(new Font("Serif", Font.PLAIN, 12));
+       pane.add(label);
+
+   JComponent panel1 = pane;
+   tabbedPane.addTab("Ápice Estratégico", icon, panel1,
+                     "Does nothing");
+   tabbedPane.setMnemonicAt(0, KeyEvent.VK_1);
+     
+  
+   ListModels LM = new ListModels(); 
+   tabbedPane.addTab("Línea Media", icon, LM,
+                     "Does twice as much nothing");
+   tabbedPane.setMnemonicAt(1, KeyEvent.VK_2);
+
+   JComponent panel3 = makeTextPanel("Panel #3");
+   tabbedPane.addTab("Núcleo Operativo", icon, panel3,
+                     "Still does nothing");
+   tabbedPane.setMnemonicAt(2, KeyEvent.VK_3);
+
+   JComponent panel4 = makeTextPanel("Panel #4");
+   panel4.setPreferredSize(new Dimension(410, 50));
+   tabbedPane.addTab("Tecnoestructura", icon, panel4,
+                         "Does nothing at all");
+   tabbedPane.setMnemonicAt(3, KeyEvent.VK_4);
+   ListModels LM2 = new ListModels(); 
+   JComponent panel5 = makeTextPanel("Panel #5");
+   tabbedPane.addTab("Soporte", icon, LM2,
+                     "Still does nothing");
+   tabbedPane.setMnemonicAt(4, KeyEvent.VK_5);
+    
+   //The following line enables to use scrolling tabs.
+   tabbedPane.setTabLayoutPolicy(JTabbedPane.SCROLL_TAB_LAYOUT);
